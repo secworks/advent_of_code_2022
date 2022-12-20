@@ -12,71 +12,15 @@
 
 # Imports as needed.
 
+
 #-------------------------------------------------------------------
-# CPU is a model of the constrained cpu.
 #-------------------------------------------------------------------
-class CPU:
-    def __init__(self, filename):
-        self.state = 'START'
-        self.x = 1
-        self.dx = 0
-        self.cycle = 1
-        self.instr = ""
-        self.pc = 0
-        self.finished = False
-
-        self.program = []
-        with open(filename,'r') as f:
-            for line in f:
-                self.program.append(line.strip())
-
-
-    def update(self):
-        if self.state == 'START':
-            if self.pc == len(self.program):
-                self.finished = True
-            else:
-                self.instr = self.program[self.pc]
-                self.pc += 1
-
-#                print("Cycle", self.cycle, "Starting instruction", self.instr, " x =", self.x)
-
-                if 'noop' in self.instr:
-                    self.dx = 0
-                    self.state = 'COMPLETE'
-
-                else:
-                    self.dx = int(self.instr.split(' ')[1])
-                    self.state = 'EXECUTE'
-
-
-        elif self.state == 'EXECUTE':
-#            print("Cycle", self.cycle, "Executing instruction", self.instr, " x =", self.x)
-            self.state = 'COMPLETE'
-            self.cycle += 1
-
-
-        elif self.state == 'COMPLETE':
-#            print("Cycle", self.cycle, "Completing instruction", self.instr, " x =", self.x)
-            self.state = 'START'
-            self.x += self.dx
-            self.cycle += 1
-
-
-    def get_cycle(self):
-        return self.cycle
-
-
-    def get_x(self):
-        return self.x
-
-
-    def get_strength(self):
-        return self.cycle * self.x
-
-
-    def done(self):
-        return self.finished
+def get_input(filename):
+    l = []
+    with open(filename,'r') as f:
+        for line in f:
+            l.append(line.strip())
+    return l
 
 
 #-------------------------------------------------------------------
