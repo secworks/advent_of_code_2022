@@ -13,6 +13,26 @@
 # Imports as needed.
 
 
+# DirNode is a directory in the file system structure. It can keep
+# track of files and subdirs. It has a name and a total size of
+# all files in the dir as well as all subdirs.
+class DirNode:
+    def __init__(self):
+        self.name = ""
+        self.parent = None
+        self.total_weight = 0
+        self.subdirs = []
+        self.files = []
+
+
+# FileNode is a file in the file system structure. It has a name
+# and a size.
+class FileNode:
+    def __init__(self):
+        self.name = ""
+        self.size = 0
+
+
 #-------------------------------------------------------------------
 #-------------------------------------------------------------------
 def get_input(filename):
@@ -23,22 +43,13 @@ def get_input(filename):
     return l
 
 
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-def find_unique_chars(s):
-    unique = True
-
-    for i in range(len(s)):
-        if i == 0:
-            if s[i] in s[1:]:
-                unique = False
-        elif i == len(s):
-            if s[i] in s[:i]:
-                unique = False
-        else:
-            if (s[i] in s[:i]) or (s[i] in s[(i + 1):]):
-                unique = False
-    return unique
+def parse_commands(cmds):
+    for cmd in cmds:
+        if '$' in cmd:
+            print(cmd, "is a command")
+        elif 'dir'in cmd:
+            (d, n) = cmd.split(" ")
+            print(n, "is a directory")
 
 
 #-------------------------------------------------------------------
@@ -49,8 +60,12 @@ def problem1():
 
 #    my_input = get_input("day07_input.txt")
     my_input = get_input("day07_example.txt")
+
+    my_tree = []
+    my_tree.append(FileNode())
+    parse_commands(my_input)
+    print(my_tree)
     print(my_input)
-    print("")
 
 
 #-------------------------------------------------------------------
