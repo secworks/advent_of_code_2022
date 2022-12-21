@@ -19,7 +19,16 @@ def get_input(filename):
     l = []
     with open(filename,'r') as f:
         for line in f:
-            l.append(line.strip())
+            l.append(int(line.strip()))
+    return l
+
+
+#-------------------------------------------------------------------
+# Permute the given list of integers l according to the
+# rules.
+#-------------------------------------------------------------------
+def permute(l):
+    tmp = l[:]
     return l
 
 
