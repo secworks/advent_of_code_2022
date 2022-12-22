@@ -65,6 +65,20 @@ def resolve_yell(name, db):
 
 
 #-------------------------------------------------------------------
+# Given a monkey name and a node db, resolve the yell value.
+#-------------------------------------------------------------------
+def equal_yell(name, db):
+    (status, value, lname, op, rname) = db[name]
+
+    lvalue = resolve_yell(lname, db)
+    rvalue = resolve_yell(rname, db)
+
+    print("lvalue:", lvalue, "rvalue:", rvalue)
+
+    return 4
+
+
+#-------------------------------------------------------------------
 #-------------------------------------------------------------------
 def problem1():
     print("Problem 1")
@@ -85,6 +99,13 @@ def problem1():
 def problem2():
     print("Problem 2")
     print("---------")
+
+#    day_input = get_input("day21_input.txt")
+    day_input = get_input("day21_example.txt")
+
+    monkey_db = get_monkey_db(day_input)
+    human_yell = equal_yell('root', monkey_db)
+
     print("")
 
 
