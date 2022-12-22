@@ -70,14 +70,13 @@ def problem1():
     print("Problem 1")
     print("---------")
 
-    my_input = get_input("day21_input.txt")
-#    my_input = get_input("day21_example.txt")
+    day_input = get_input("day21_input.txt")
+#    day_input = get_input("day21_example.txt")
 
-    my_monkey_db = get_monkey_db(my_input)
-    print(my_monkey_db)
-    my_yell = resolve_yell('root', my_monkey_db)
+    monkey_db = get_monkey_db(day_input)
+    root_yell = resolve_yell('root', monkey_db)
 
-    print("root will yell", my_yell)
+    print("root will yell", root_yell)
     print("")
 
 
